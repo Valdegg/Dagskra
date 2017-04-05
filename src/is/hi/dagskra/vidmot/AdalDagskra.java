@@ -22,7 +22,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class AdalDagskra extends javax.swing.JFrame {
 
-  
+
     
     /**
      * upprunalegu gögnin sem hlaðið er inn eru geymd í dagskrain
@@ -30,9 +30,23 @@ public class AdalDagskra extends javax.swing.JFrame {
     private DagskraKatalogur dagskrain; 
     /**
      * dagskramodel er modelið fyrir jDagskrarLidir
-     * gögnin eru geymd sem DefaultListModel í dagskramodel
+     * ( gögnin eru geymd sem í dagskramodel sem er DefaultListModel )
      */
     private DagskraModel dagskramodel;
+         
+    /**
+     * upprunalegu gögnin sem hlaðið er inn fyrir lista "morgundagsins" eru geymd í dagskrain
+     */ 
+    private DagskraKatalogur dagskrainMrg; 
+    
+    
+    
+    /**
+     * dagskramodelMrg er modelið fyrir jDagskrarLidirMrg
+     * ( gögnin eru geymd sem í dagskramodelMrg sem er DefaultListModel )
+     */
+    private DagskraModel dagskramodelMrg;
+    
     
     /**
      * ef true þá búið að smella á hnappinn og ekki búið að smella á dagskrárlið til að eyða
@@ -281,7 +295,21 @@ public class AdalDagskra extends javax.swing.JFrame {
         this.dagskrain = dagskrain;
     }
 
-    
+    /**
+     * @return the dagskrainMrg
+     */
+    public DagskraKatalogur getDagskrainMrg() {
+        return dagskrainMrg;
+    }
+
+    /**
+     * @param dagskrainMrg the dagskrainMrg to set
+     */
+    public void setDagskrainMrg(DagskraKatalogur dagskrainMrg) {
+        this.dagskrainMrg = dagskrainMrg;
+    }
+
+  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -351,8 +379,10 @@ public class AdalDagskra extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jMinDagskraMrg);
 
+        jTextIDag.setEditable(false);
         jTextIDag.setText("Í dag:");
 
+        jTextMrg.setEditable(false);
         jTextMrg.setText("Á morgun:");
 
         javax.swing.GroupLayout jMinDagskraLayout = new javax.swing.GroupLayout(jMinDagskra);
@@ -604,7 +634,7 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(jLeitaMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 66, Short.MAX_VALUE))
         );
         jDagskraMrgLayout.setVerticalGroup(
             jDagskraMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,7 +661,7 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116)
                 .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

@@ -34,7 +34,7 @@
               <Component id="jDagskra" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Component id="jDagskraMrg" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
               <Component id="jMinDagskra" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
           </Group>
@@ -187,11 +187,13 @@
         </Container>
         <Component class="javax.swing.JTextField" name="jTextIDag">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="&#xcd; dag:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextMrg">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="&#xc1; morgun:"/>
           </Properties>
         </Component>
@@ -372,7 +374,7 @@
                   <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   <Component id="jLeitaMrg" min="-2" pref="114" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
