@@ -1,61 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<schedule saved="2017-04-06 16:40" saved-by="Kringla 3.1" xml-version="2.7.0">
-  <service service-id="1" service-name="RÚV" date="2017-04-06">
-    <event event-id="4899843" serie-id="18927" start-time="2017-04-06 15:30:00" duration="00:45:50" mark="no">
+<root>
+  
+    <results> 
+        <start-time>2017-04-06 15:30:00</start-time> 
+ 
+ <duration>00:45:50</duration>
       <title>Íslendingar</title>
-      <original-title>Árni Scheving</original-title>
-      <description><![CDATA[Fjallað er um Íslendinga sem fallnir eru frá en létu að sér kveða um sína daga. Andrés Indriðason hefur umsjón með gerð þáttanna. Allt dagskrárefnið er úr safni RÚV. e.]]></description>
-      <short-description />
-      <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      <original-title></original-title>
+      <description>Fjallað er um Íslendinga sem fallnir eru frá en létu að sér kveða um sína daga. Andrés Indriðason hefur umsjón með gerð þáttanna. Allt dagskrárefnið er úr safni RÚV. e.</description>
+      <short-description />     
       <live>no</live>
-      <rerun>yes</rerun>
-      <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+      <premier></premier>
+      <aspect-ratio>      
       </aspect-ratio>
-      <subtitles>
-        <open>no</open>
-        <closed>yes</closed>
-      </subtitles>
-      <category value="6">Íslenskir þættir</category>
-      <more-info>http://dagskra.ruv.is/nanar/18927/</more-info>
-      <reference group="18927" material="018927-0011" title="Íslendingar" />
-      <details id="18927">
-        <series-title>Íslendingar</series-title>
-        <series-original-title />
-        <series-description>
-          <p>Fjallað er um Íslendinga sem fallnir eru frá en létu að sér kveða um sína daga. Andrés Indriðason hefur umsjón með gerð þáttana. Allt dagskrárefnið er úr safni Sjónvarpsins.</p>
-        </series-description>
-        <series-short-description>
-          <p>Fjallað er um Íslendinga sem fallnir eru frá en létu að sér kveða um sína daga. Andrés Indriðason hefur umsjón með gerð þáttana. Allt dagskrárefnið er úr safni RÚV.</p>
-        </series-short-description>
-        <episode-description>
-          <p>Árni Scheving var einn helsti djasslistamaður þjóðarinnar. Hann hóf ungur að starfa sem hljómlistarmaður og lék með öllum helstu hljómsveitum og tónlistarmönnum þjóðarinnar á öllum sviðum tónlistar. Flest hljóðfæri léku í höndum hans en víbrafónninn var þó höfuðhljóðfærið, einkum í djasstónlist.</p>
-          <p>Dagskrárefnið er úr safni Sjónvarpsins.  Umsjón og dagskrárgerð: Andrés Indriðason.</p>
-        </episode-description>
-        <episode-short-description>
-          <p>Árni Scheving var einn helsti djasslistamaður þjóðarinnar. Hann hóf ungur að starfa sem hljómlistarmaður og lék með öllum helstu hljómsveitum og tónlistarmönnum þjóðarinnar á öllum sviðum tónlistar. Flest hljóðfæri léku í höndum hans en víbrafónninn var þó höfuðhljóðfærið, einkum í djasstónlist.</p>
-        </episode-short-description>
-      </details>
-      <credits />
-    </event>
-    <event event-id="4899287" serie-id="23089" start-time="2017-04-06 16:15:00" duration="00:25:45" mark="no">
+     
+     
+    
+    </results>
+    <results> 
+<start-time>2017-04-06 16:15:00" duration="00:25:45" mark="no">
       <title>Ísþjóðin með Ragnhildi Steinunni</title>
       <original-title>Glowie - söngkona</original-title>
       <description><![CDATA[Í þáttunum skyggnumst við inn í líf ungra Íslendinga sem takast á við krefjandi og spennandi hluti. Í þessari þáttarröð fylgjumst við meðal annars með eina íslenska atvinnumanninum á brimbretti, förum í tónleikaferðalag með hljómsveitinni Kaleo og kynnumst einum færasta húðflúrara í heimi. Dagskrárgerð: Eiríkur Ingi Böðvarsson og Ragnhildur Steinunn Jónsdóttir. e.]]></description>
       <short-description />
       <rating />
-      <episode number="2" number-of-episodes="5" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>yes</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -73,10 +49,10 @@
         <series-short-description>
           <p>Ísþjóðin með Ragnhildi Steinunni fer aftur á flug.</p>
         </series-short-description>
-        <episode-description>
+        
           <p>Sara Pétursdóttir, eða Glowie eins og hún kallar sig opinberlega, er ein vinsælasta söngkona landsins. Ferill hennar fór á flug árið 2014 þegar hún sigraði í Söngkeppni framhaldsskólanna fyrir hönd Tækniskólans. Í framhaldi af því hóf hún samstarf við upptökuteymið Stop Wait Go og hefur gefið út hvern stórsmellinn á fætur öðrum.</p>
         </episode-description>
-        <episode-short-description />
+        
       </details>
       <credits />
     </event>
@@ -86,14 +62,14 @@
       <description><![CDATA[Ný íslensk þáttaröð um þær Steineyju og Sigurlaugu sem vita ekkert hvert þær stefna í lífinu. Í þáttunum kynnast þær hvaða nám og störf standa ungu fólki til boða og fá nasasjón af ýmiss konar starfsframa. Dagsrkárgerð: Arnór Pálmi Arnarsson. Framleiðsla: Saga Film. e.]]></description>
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="8" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>yes</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -109,10 +85,10 @@
           <p>Ný íslensk þáttaröð um þær Steineyju og Sigurlaugu sem vita ekkert hvert þær stefna í lífinu. Í þáttunum kynnast þær hvaða nám og störf standa ungu fólki til boða og fá nasasjón af ýmiss konar starfsframa. Dagskrárgerð: Arnór Pálmi Arnarsson. Framleiðsla: Sagafilm.</p>
         </series-description>
         <series-short-description />
-        <episode-description>
+        
           <p>Eftir að hafa verið ítrekað hafnað, af hinum ýmsu háskólum, höfðu þær Sigurlaug Sara Gunnarsdóttir og Steiney Skúladóttir ekki hugmynd um hvað þær ættu að gera í lífinu. Hvers vegna virtust allir aðrir vera með sitt á hreinu? Hvers vegna er þessi pressa að fara í bóklegt nám frekar en iðnnám? Er listnám bara einn stór brandari? Hvort er betra að fara í nám sem maður hefur engan áhuga á eða að vera ómenntaður? Þær ákváðu að gera þáttaröð og freista þess að svara þessum spurningum.</p>
         </episode-description>
-        <episode-short-description />
+        
       </details>
       <credits />
     </event>
@@ -122,14 +98,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -144,14 +120,14 @@
       <description><![CDATA[Bein útsending frá Íslandsmótinu í hópfimleikum í Laugardalshöll. Meistaradagar er yfirskrift íþróttahátíðar sem nú er haldin í fyrsta skipti. RÚV og mörg sérsambönd hafa samstarf um hátíðina og keppt verður um bikar- og meistaratitla í veglegri umgjörð og beinni sjónvarpsútsendingu. Margt af allra fremsta íþróttafólki þjóðarinnar verður meðal þátttakenda og keppir um stóra titla í hinum ýmsu greinum hóp- og einstaklingsíþrótta.]]></description>
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>yes</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -166,14 +142,14 @@
       <description><![CDATA[Fréttaþáttur fyrir börn á aldrinum 8-12 ára. Umsjón: Guðmundur Felixson og Ísgerður Elfa Gunnarsdóttir.]]></description>
       <short-description />
       <rating />
-      <episode number="55" number-of-episodes="200" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -191,8 +167,8 @@
         <series-short-description>
           <p>Fréttaþáttur fyrir börn á aldrinum 8-12 ára.  Umsjón: Ísgerður Elfa Gunnarsdóttir og Guðmundur Felixson.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -202,14 +178,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -224,14 +200,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -246,14 +222,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -268,14 +244,14 @@
       <description><![CDATA[Beittur, fréttatengdur þáttur um málefni líðandi stundar, menningu og dægurmál hvers konar. Umsjónarmenn: Þóra Arnórsdóttir, Helgi Seljan, Helga Arnardóttir, Baldvin Þór Bergsson, Bergsteinn Sigurðsson og Halla Oddný Magnúsdóttir.]]></description>
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -293,8 +269,8 @@
         <series-short-description>
           <p>Beittur, fréttatengdur þáttur um málefni líðandi stundar, menningu og dægurmál hvers konar.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -304,14 +280,14 @@
       <description><![CDATA[Ný íslensk þáttaröð um þær Steineyju og Sigurlaugu Söru sem vita ekkert hvert þær stefna í lífinu. Í þáttunum kynnast þær hvaða nám og störf standa ungu fólki til boða og fá nasasjón af ýmiss konar starfsframa. Dagskrárgerð: Arnór Pálmi Arnarsson. Framleiðsla: Sagafilm.]]></description>
       <short-description />
       <rating />
-      <episode number="2" number-of-episodes="8" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -327,10 +303,10 @@
           <p>Ný íslensk þáttaröð um þær Steineyju og Sigurlaugu sem vita ekkert hvert þær stefna í lífinu. Í þáttunum kynnast þær hvaða nám og störf standa ungu fólki til boða og fá nasasjón af ýmiss konar starfsframa. Dagskrárgerð: Arnór Pálmi Arnarsson. Framleiðsla: Sagafilm.</p>
         </series-description>
         <series-short-description />
-        <episode-description>
+        
           <p>Af hverju velur fólk sér nám sem tryggir tilfinningalegt og líkamlegt álag en slæmar tekjur? Af hverju að vinna í heilbrigðisgeiranum?</p>
         </episode-description>
-        <episode-short-description />
+        
       </details>
       <credits />
     </event>
@@ -340,14 +316,14 @@
       <description><![CDATA[Leikin þáttaröð frá BBC um ósköp venjulegan hóp starfsmanna á bílasölu þar sem hvítar lygar koma þeim í hann krappann. Aðalhlutverk: Cat Simmons, Jennifer Nicholas og Con O'Neill.]]></description>
       <short-description />
       <rating />
-      <episode number="5" number-of-episodes="6" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -365,8 +341,8 @@
         <series-short-description>
           <p>Leikin þáttaröð frá BBC um ósköp venjulegan hóp starfsmanna á bílasölu þar sem hvítar lygar koma þeim í hann krappann. Aðalhlutverk: Cat Simmons, Jennifer Nicholas og Con O&apos;Neill.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -376,14 +352,14 @@
       <description><![CDATA[Önnur þáttaröð um listamanninn Hulla og hans nánustu vini í Reykjavík nútímans. Síðast þegar við sáum til Hulla var hann búin að selja Kölska sál sína, vinna Óskarinn og flytja til Hollywood. Atriði í þáttunum eru ekki við hæfi barna.]]></description>
       <short-description />
       <rating>16</rating>
-      <episode number="7" number-of-episodes="8" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -401,8 +377,8 @@
         <series-short-description>
           <p>Önnur þáttaröð um listamanninn Hulla og hans nánustu vini í Reykjavík nútímans. Síðast þegar við sáum til Hulla var hann búin að selja Kölska sál sína, vinna Óskarinn og flytja til Hollywood. Atriði í þáttunum eru ekki við hæfi barna.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -412,14 +388,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -434,14 +410,14 @@
       <description />
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -456,14 +432,14 @@
       <description><![CDATA[Önnur þáttaröð af þessum spennumyndaflokki sem tekinn er hér á landi. Sagan gerist í þorpi á norðurhjara. Hrottalegur glæpur skekur þorpssamfélagið sem þekkt er fyrir friðsemd og nánd íbúanna. Leikstjóri: Sam Miller. Leikarar: Björn Hlynur Haraldsson, Sofie Gråbøl, Mia Jexen, Luke Treadaway,  Jóhann G. Jóhannsson og Dennis Quaid. Atriði í þáttunum eru ekki við hæfi barna.]]></description>
       <short-description />
       <rating>16</rating>
-      <episode number="10" number-of-episodes="10" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -481,8 +457,8 @@
         <series-short-description>
           <p>Önnur þáttaröð af þessum spennumyndaflokki sem tekinn er hér á landi. Sagan gerist í þorpi á norðurhjara.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -492,14 +468,14 @@
       <description><![CDATA[Líflegur þáttur um áhugamannadeildina í hestaíþróttum. Fylgst er með spennandi keppni og rætt við skemmtilegt fólk sem stundar hestamennsku í frístundum. Dagskrárgerð: Hulda G. Geirsdóttir og Óskar Þór Nikulásson.]]></description>
       <short-description />
       <rating />
-      <episode number="4" number-of-episodes="5" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>no</open>
@@ -517,8 +493,8 @@
         <series-short-description>
           <p>Líflegur þáttur um áhugamannadeildina í hestaíþróttum. Fylgst er með spennandi keppni og rætt við skemmtilegt fólk sem stundar hestamennsku í frístundum. Dagskrárgerð: Hulda G. Geirsdóttir og Óskar Þór Nikulásson.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -528,14 +504,14 @@
       <description><![CDATA[Glæpasveitin er evrópsk þáttaröð. Hópur rannsóknarlögreglumanna hjá Interpol samræma lögregluaðgerðir gegn mansali og skattsvikum sem virða engin landamæri. Aðalhlutverk: Lars Mikkelsen, Jasmin Gerat og Veerle Baetens. Atriði í þáttunum eru ekki við hæfi barna. e.]]></description>
       <short-description />
       <rating>16</rating>
-      <episode number="8" number-of-episodes="8" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>yes</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -554,8 +530,8 @@
         <series-short-description>
           <p>Glæpasveitin er evrópsk þáttaröð. Hópur rannsóknarlögreglumanna hjá Interpol samræma lögregluaðgerðir gegn mansali og skattsvikum sem virða engin landamæri.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -565,14 +541,14 @@
       <description><![CDATA[Beittur, fréttatengdur þáttur um málefni líðandi stundar, menningu og dægurmál hvers konar. Umsjónarmenn: Þóra Arnórsdóttir, Helgi Seljan, Helga Arnardóttir, Baldvin Þór Bergsson, Bergsteinn Sigurðsson og Halla Oddný Magnúsdóttir. e.]]></description>
       <short-description />
       <rating />
-      <episode number="1" number-of-episodes="1" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>yes</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <subtitles>
         <open>yes</open>
@@ -590,8 +566,8 @@
         <series-short-description>
           <p>Beittur, fréttatengdur þáttur um málefni líðandi stundar, menningu og dægurmál hvers konar.</p>
         </series-short-description>
-        <episode-description />
-        <episode-short-description />
+        
+        
       </details>
       <credits />
     </event>
@@ -601,16 +577,16 @@
       <description />
       <short-description />
       <rating />
-      <episode number="132" number-of-episodes="400" multiple-episodes="yes" />
-      <subevent>no</subevent>
+      
+      
       <live>no</live>
-      <rerun>no</rerun>
+      
       <aspect-ratio>
-        <size>16:9</size>
-        <anamorphic>yes</anamorphic>
-        <letterbox>no</letterbox>
+        
+        
+        
       </aspect-ratio>
       <reference group="" material="4850743" title="Dagskrárlok" />
     </event>
-  </service>
-</schedule>
+  
+</root>

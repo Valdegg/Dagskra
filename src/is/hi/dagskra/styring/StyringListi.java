@@ -57,7 +57,9 @@ public class StyringListi implements ListSelectionListener {
                 opnaStadfestingarGlugga();
                 
                 if(dagskrarGlugginn.isStadfestaEyda()){
-                    eydaDagskrarLid(index);
+                    
+                    //eydaDagskrarLid(index);
+                    dagskrarGlugginn.eydaDagskrarLid(index,aMorgun);
                     lsm.removeIndexInterval(index, index);
                     dagskrarGlugginn.setEyda(false);                
                     dagskrarGlugginn.setStadfestaEyda(false);                                               
