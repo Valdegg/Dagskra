@@ -19,14 +19,25 @@ public class StyringComboBox implements ActionListener{
 
 
     private final AdalDagskra dagskrarGlugginn;
+    
+    /**
+     * segir til um hvorn dagskrárlistann verið er að stýra; true ef dagskrá "morgundagsins"
+     */
+    private boolean aMorgun;
     /**
      * fjoldiSmella er hve oft atriði hefur verið valið
      */
     private int fjoldiSmella;
     
-    public StyringComboBox(AdalDagskra adalGlugginn){
+    /**
+     * 
+     * @param adalGlugginn dagskrárgluginn sem kallað er á úr
+     * @param aMorgun boolean sem segir til um hvorn dagskrárlistann verið er að stýra, true ef dagskrá "morgundagsins"
+     */
+    public StyringComboBox(AdalDagskra adalGlugginn, boolean aMorgun){
         dagskrarGlugginn = adalGlugginn;
         fjoldiSmella = 0;
+        this.aMorgun = aMorgun;
     }
     
     /**
@@ -38,7 +49,7 @@ public class StyringComboBox implements ActionListener{
      
         JComboBox cb = (JComboBox)event.getSource();
         String klukkustund = (String)cb.getSelectedItem();
-        dagskrarGlugginn.filterEftirKlst(klukkustund);
+        dagskrarGlugginn.filterEftirKlst(klukkustund, aMorgun);
  
     }
     
@@ -56,5 +67,19 @@ public class StyringComboBox implements ActionListener{
         this.fjoldiSmella = fjoldiSmella;
     }
     
+    /**
+     * @return the aMorgun
+     */
+    public boolean isaMorgun() {
+        return aMorgun;
+    }
+
+    /**
+     * @param aMorgun the aMorgun to set
+     */
+    public void setaMorgun(boolean aMorgun) {
+        this.aMorgun = aMorgun;
+    }
+
     
 }

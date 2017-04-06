@@ -115,12 +115,36 @@ public class AdalDagskra extends javax.swing.JFrame {
         // g.r.f. að dagskrain sé working model
         jDagskrarLidir.setModel(dagskramodel);
         
-        jDagskrarLidir.getSelectionModel().addListSelectionListener(new StyringListi(this));        
+        jDagskrarLidir.getSelectionModel().addListSelectionListener(new StyringListi(this, false));        
         // listener hefur verið tengdur við listann 
         
         // listinn fyrir dagskrárliði í dag hefur verið settur upp.
+             
         
         
+        // geri gögn til að hlaða inn inn í ComboBoxið fyrir klukkustundirnar
+        String[] klukkustundir = new String[24-17+1];
+        int j = 0; 
+        for(int i = 17; i<24; i++)
+        {
+       
+            klukkustundir[j++] = String.valueOf(i);
+        }
+        klukkustundir[j] = "00";
+        
+
+        klstmodel = new DefaultComboBoxModel(klukkustundir);
+ 
+        // set gögn í jInnanKlst
+        jInnanKlst.setModel(klstmodel);
+     
+        styringComboBox = new StyringComboBox(this, false);
+        // tengi listener við jInnanKlst
+        jInnanKlst.addActionListener(styringComboBox);
+        
+        
+        
+          
         // listinn fyrir dagskrárliði á morgun settur upp:
         dagskramodelMrg = new DagskraModel();
         dagskrainMrg = new DagskraKatalogur();   
@@ -132,30 +156,9 @@ public class AdalDagskra extends javax.swing.JFrame {
         // dagskramodelMrg.setDagskrain(dagskrainMrg);        
         jDagskrarLidirMrg.setModel(dagskramodelMrg);
         
+        jDagskrarLidirMrg.getSelectionModel().addListSelectionListener(new StyringListi(this,true));        
         
         
-        
-        // geri gögn til að hlaða inn inn í ComboBoxið
-        String[] klukkustundir = new String[24-17+1];
-        int j = 0; 
-        for(int i = 17; i<24; i++)
-        {
-            //System.out.println(String.valueOf(i));
-            klukkustundir[j++] = String.valueOf(i);
-        }
-        klukkustundir[j] = "00";
-        
-
-        klstmodel = new DefaultComboBoxModel(klukkustundir);
- 
-        // set gögn í jInnanKlst
-        jInnanKlst.setModel(klstmodel);
-     
-        styringComboBox = new StyringComboBox(this);
-        // tengi listener við jInnanKlst
-        jInnanKlst.addActionListener(styringComboBox);
-        
-  
         
     }
 
@@ -180,23 +183,31 @@ public class AdalDagskra extends javax.swing.JFrame {
     }
     
     /**
-     * Eyðir  dagskrárlið nr lidurNr úr dagskramodel
-     * @param lidurNr indexið á liðinn í listanum
+     * Eyðir  dagskrárlið nr lidurNr úr dagskramodel eða dagskramodelMrg
+     * @param lidurNr indexið á liðinn í listanum 
+     * @param aMorgun ef true, þá eyðir á morgun, annars í dag
      */
-    public void eydaDagskrarLid(int lidurNr){
-        //System.out.println(lidurNr);
-         dagskramodel.remove(lidurNr);
-         // þetta eyðir ekki almennilega úr gögnunum
-         List<Root.Results> dagskrarLidir = dagskramodel.getDagskrain().getDagskrarLidir();
-         dagskrarLidir.remove(lidurNr);
-         // nú er búið að eyða almennilega úr gögnunum
-  
+    public void eydaDagskrarLid(int lidurNr, boolean aMorgun){
+        if(aMorgun){
+            dagskramodelMrg.remove(lidurNr);
+            // þetta eyðir ekki almennilega úr gögnunum
+            List<Root.Results> dagskrarLidir = dagskramodelMrg.getDagskrain().getDagskrarLidir();
+            dagskrarLidir.remove(lidurNr);
+            // nú er búið að eyða almennilega úr gögnunum
+        }else{
+            dagskramodel.remove(lidurNr);
+            // þetta eyðir ekki almennilega úr gögnunum
+            List<Root.Results> dagskrarLidir = dagskramodel.getDagskrain().getDagskrarLidir();
+            dagskrarLidir.remove(lidurNr);
+            // nú er búið að eyða almennilega úr gögnunum
+        }
     }
     /**
-     * Breytir modelinu fyrir jDagskrarLidir þannig að bara dagskrárliðir sem innihalda leitarord sem substring eru eftir
-     * @param leitarord strengurinn sem leitað er eftir
+     * Breytir modelinu fyrir jDagskrarLidir (eða jDagskrarLidirMrg) þannig að bara dagskrárliðir sem innihalda leitarord sem substring eru eftir
+     * @param leitarord strengurinn sem leitað er eftir 
+     * @param aMorgun true ef leita á í jDagskrarLidirMrg, annars false
      */
-     public void filteraDagskrana(String leitarord){
+     public void filteraDagskrana(String leitarord, boolean aMorgun){
         
         if(leitarord.equals("")){
             // sýnum allt sem inniheldur tóma strenginn 
@@ -218,7 +229,7 @@ public class AdalDagskra extends javax.swing.JFrame {
                     lidurNr++;
                 }else{
                     // dagskrárliðurinn uppfyllir ekki leitarskilyrðin, hendum honum
-                    eydaDagskrarLid(lidurNr);
+                    eydaDagskrarLid(lidurNr, aMorgun);
                     fjoldiStakaIListanum--;
                 }
 
@@ -239,13 +250,14 @@ public class AdalDagskra extends javax.swing.JFrame {
     }
     
     /**
-     * breytir modelinu fyrir jDagskrarLidir þ.a. bara dagskrárliðir sem hefjast á klukkutímanum klst, t.d. milli 17 og 18 eru eftir
+     * breytir modelinu fyrir jDagskrarLidir (eða jDagskrarLidirMrg) þ.a. bara dagskrárliðir sem hefjast á klukkutímanum klst, t.d. milli 17 og 18 eru eftir
      * @param klst strengur sem táknar klst t.d. "17" eða "23" eða "00"
+      * @param aMorgun true ef leita á í jDagskrarLidirMrg, annars false
      */ 
-    public void filterEftirKlst(String klst){
+    public void filterEftirKlst(String klst, boolean aMorgun){
         
         endurstillaDagskra();
-        filteraDagskrana(jFilter.getText());
+        filteraDagskrana(jFilter.getText(), aMorgun);
         // dagskráin hefur verið endurstillt til að geta filterað aftur
         //   ef ske kynni að það hafi þegar verið filterað
         
@@ -263,7 +275,7 @@ public class AdalDagskra extends javax.swing.JFrame {
                 lidurNr++;
             }else{
                 // liðurinn uppfyllir ekki leitarskilyrðin
-                eydaDagskrarLid(lidurNr);
+                eydaDagskrarLid(lidurNr, aMorgun);
                 fjoldiStakaIListanum--;
             }
 
@@ -408,13 +420,13 @@ public class AdalDagskra extends javax.swing.JFrame {
         jMinDagskraLayout.setHorizontalGroup(
             jMinDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMinDagskraLayout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(88, Short.MAX_VALUE)
                 .addGroup(jMinDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextIDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jMinDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(112, 112, 112))
         );
         jMinDagskraLayout.setVerticalGroup(
@@ -745,7 +757,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      */
     private void jFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFilterKeyReleased
         String textiSkrifadur = jFilter.getText();
-        filteraDagskrana(textiSkrifadur);
+        filteraDagskrana(textiSkrifadur,false);
         
     }//GEN-LAST:event_jFilterKeyReleased
 

@@ -16,19 +16,23 @@ import is.hi.dagskra.gogn.Root;
  * @author Valdimar Ágúst Eggertsson 
  */
 public class StyringListi implements ListSelectionListener {
-    
+
     /**
      * dagskráin sem hefur listann sem er stýrt 
      */
     private final AdalDagskra dagskrarGlugginn;
     private Root.Results dagskrarlidur;
+    private boolean aMorgun;
     
     
     /**
      * Býr til listener fyrir lista í glugganum dagskrain
+     * @param dagskrain dagskrarglugginn sem kallað er úr
+     * @param aMorgun true ef listinn er jDagskrarLidirMrg, false ef jDagskrarLidir
      */ 
-    public StyringListi(AdalDagskra dagskrain){
+    public StyringListi(AdalDagskra dagskrain, boolean aMorgun){
         dagskrarGlugginn = dagskrain;
+        this.aMorgun = aMorgun;
         //prentaDagskrarlidi();
         
     }
@@ -43,6 +47,7 @@ public class StyringListi implements ListSelectionListener {
 
         ListSelectionModel lsm = (ListSelectionModel)event.getSource();  // af hverju kasta? því getSource skilar Object
          int index = lsm.getMinSelectionIndex();   
+         System.out.println(lsm);
        
         if(index != -1){
             // selection is non-empty
@@ -85,7 +90,7 @@ public class StyringListi implements ListSelectionListener {
      * @param lidurNr index á dagskráliðinn í dagskramodel
      */
     private void eydaDagskrarLid(int lidurNr){
-        dagskrarGlugginn.eydaDagskrarLid(lidurNr);
+        dagskrarGlugginn.eydaDagskrarLid(lidurNr,aMorgun);
         // dagskrárliðnum hefur verið eytt úr dagskrarGlugginn.dagskramodel
     }
  
@@ -110,5 +115,19 @@ public class StyringListi implements ListSelectionListener {
         stadfestingarGluggi.setVisible(true);
         
     }
-    
+
+    /**
+     * @return the aMorgun
+     */
+    public boolean isaMorgun() {
+        return aMorgun;
+    }
+
+    /**
+     * @param aMorgun the aMorgun to set
+     */
+    public void setaMorgun(boolean aMorgun) {
+        this.aMorgun = aMorgun;
+    }
+        
 }
