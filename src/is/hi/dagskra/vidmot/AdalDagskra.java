@@ -22,6 +22,8 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class AdalDagskra extends javax.swing.JFrame {
 
+   
+
 
     
     /**
@@ -30,7 +32,7 @@ public class AdalDagskra extends javax.swing.JFrame {
     private DagskraKatalogur dagskrain; 
     /**
      * dagskramodel er modelið fyrir jDagskrarLidir
-     * ( gögnin eru geymd sem í dagskramodel sem er DefaultListModel )
+     * ( gögnin eru geymd sem dagskramodel sem er DefaultListModel )
      */
     private DagskraModel dagskramodel;
          
@@ -43,9 +45,21 @@ public class AdalDagskra extends javax.swing.JFrame {
     
     /**
      * dagskramodelMrg er modelið fyrir jDagskrarLidirMrg
-     * ( gögnin eru geymd sem í dagskramodelMrg sem er DefaultListModel )
+     * ( gögnin eru geymd sem  dagskramodelMrg sem er DefaultListModel )
      */
     private DagskraModel dagskramodelMrg;
+    
+    /**
+     * dagskramodelMrg er modelið fyrir jMinDagskraIDag
+     * ( gögnin eru geymd sem dagskramodelMinIdag sem er DefaultListModel )
+     */
+    private DagskraModel dagskramodelMinIDag;
+    
+    /**
+     * dagskramodelMrg er modelið fyrir jMinDagskraMrg
+     * ( gögnin eru geymd sem dagskramodelMinMrg sem er DefaultListModel )
+     */
+    private DagskraModel dagskramodelMinMrg;
     
     
     /**
@@ -337,7 +351,33 @@ public class AdalDagskra extends javax.swing.JFrame {
     public void setDagskrainMrg(DagskraKatalogur dagskrainMrg) {
         this.dagskrainMrg = dagskrainMrg;
     }
+ /**
+     * @return the dagskramodelMinIDag
+     */
+    public DagskraModel getDagskramodelMinIDag() {
+        return dagskramodelMinIDag;
+    }
 
+    /**
+     * @param dagskramodelMinIDag the dagskramodelMinIDag to set
+     */
+    public void setDagskramodelMinIDag(DagskraModel dagskramodelMinIDag) {
+        this.dagskramodelMinIDag = dagskramodelMinIDag;
+    }
+
+    /**
+     * @return the dagskramodelMinMrg
+     */
+    public DagskraModel getDagskramodelMinMrg() {
+        return dagskramodelMinMrg;
+    }
+
+    /**
+     * @param dagskramodelMinMrg the dagskramodelMinMrg to set
+     */
+    public void setDagskramodelMinMrg(DagskraModel dagskramodelMinMrg) {
+        this.dagskramodelMinMrg = dagskramodelMinMrg;
+    }
   
     
     /**
@@ -369,6 +409,10 @@ public class AdalDagskra extends javax.swing.JFrame {
         jLeit = new javax.swing.JTextField();
         jSynaKlst = new javax.swing.JTextField();
         jTitillEdaLysing = new javax.swing.JComboBox<>();
+        jMaxLengdMrg1 = new javax.swing.JSpinner();
+        jMinLengdMrg1 = new javax.swing.JSpinner();
+        jMaxLengdTextMrg1 = new javax.swing.JTextField();
+        jMinLengdTextMrg1 = new javax.swing.JTextField();
         jDagskraMrg = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jDagskrarLidirMrg = new javax.swing.JList<>();
@@ -379,6 +423,10 @@ public class AdalDagskra extends javax.swing.JFrame {
         jLeitMrg = new javax.swing.JTextField();
         jSynaKlstMrg = new javax.swing.JTextField();
         jTitillEdaLysingMrg = new javax.swing.JComboBox<>();
+        jMaxLengdMrg = new javax.swing.JSpinner();
+        jMinLengdMrg = new javax.swing.JSpinner();
+        jMinLengdTextMrg = new javax.swing.JTextField();
+        jMaxLengdTextMrg = new javax.swing.JTextField();
         jSkraLid = new javax.swing.JButton();
         jEydaLid = new javax.swing.JButton();
         jFaeraIMina = new javax.swing.JButton();
@@ -495,28 +543,50 @@ public class AdalDagskra extends javax.swing.JFrame {
 
         jTitillEdaLysing.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jMaxLengdTextMrg1.setText("jTextField1");
+        jMaxLengdTextMrg1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMaxLengdTextMrg1ActionPerformed(evt);
+            }
+        });
+
+        jMinLengdTextMrg1.setText("jTextField1");
+        jMinLengdTextMrg1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMinLengdTextMrg1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jLeitaLayout = new javax.swing.GroupLayout(jLeita);
         jLeita.setLayout(jLeitaLayout);
         jLeitaLayout.setHorizontalGroup(
             jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLeitaLayout.createSequentialGroup()
-                .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jLeitaLayout.createSequentialGroup()
-                        .addComponent(jLeit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jMaxLengdTextMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jMaxLengdMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLeitaLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jEndurstilla))
-                    .addGroup(jLeitaLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jInnanKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLeitaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSynaKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLeitaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jTitillEdaLysing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jMinLengdTextMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jMinLengdMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jLeitaLayout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addComponent(jEndurstilla))
+                        .addGroup(jLeitaLayout.createSequentialGroup()
+                            .addGap(55, 55, 55)
+                            .addComponent(jInnanKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jLeitaLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jSynaKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTitillEdaLysing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jLeitaLayout.createSequentialGroup()
+                                .addComponent(jLeit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         jLeitaLayout.setVerticalGroup(
@@ -526,15 +596,23 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLeit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jTitillEdaLysing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jSynaKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jSynaKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInnanKlst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jEndurstilla)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jMinLengdMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jMinLengdTextMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jMaxLengdMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jMaxLengdTextMrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDagskraLayout = new javax.swing.GroupLayout(jDagskra);
@@ -551,13 +629,14 @@ public class AdalDagskra extends javax.swing.JFrame {
         jDagskraLayout.setVerticalGroup(
             jDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDagskraLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
                 .addGroup(jDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDagskraLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDagskraLayout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         jDagskrarLidirMrg.setModel(new javax.swing.AbstractListModel<String>() {
@@ -611,6 +690,20 @@ public class AdalDagskra extends javax.swing.JFrame {
 
         jTitillEdaLysingMrg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jMinLengdTextMrg.setText("jTextField1");
+        jMinLengdTextMrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMinLengdTextMrgActionPerformed(evt);
+            }
+        });
+
+        jMaxLengdTextMrg.setText("jTextField1");
+        jMaxLengdTextMrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMaxLengdTextMrgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jLeitaMrgLayout = new javax.swing.GroupLayout(jLeitaMrg);
         jLeitaMrg.setLayout(jLeitaMrgLayout);
         jLeitaMrgLayout.setHorizontalGroup(
@@ -621,25 +714,35 @@ public class AdalDagskra extends javax.swing.JFrame {
                         .addGap(0, 22, Short.MAX_VALUE)
                         .addComponent(jEndurstillaMrg))
                     .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                        .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jLeitaMrgLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(jInnanKlstMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSynaKlstMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLeitMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jMaxLengdTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFilterMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jMaxLengdMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jLeitaMrgLayout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jLeitaMrgLayout.createSequentialGroup()
+                                            .addGap(44, 44, 44)
+                                            .addComponent(jInnanKlstMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jSynaKlstMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jLeitaMrgLayout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(jLeitMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jFilterMrg, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jLeitaMrgLayout.createSequentialGroup()
+                                    .addGap(26, 26, 26)
+                                    .addComponent(jTitillEdaLysingMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jLeitaMrgLayout.createSequentialGroup()
+                                    .addGap(39, 39, 39)
+                                    .addComponent(jMinLengdTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jMinLengdMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jTitillEdaLysingMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLeitaMrgLayout.setVerticalGroup(
             jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,7 +759,15 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addComponent(jInnanKlstMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEndurstillaMrg)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jMinLengdMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jMinLengdTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jMaxLengdMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jMaxLengdTextMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDagskraMrgLayout = new javax.swing.GroupLayout(jDagskraMrg);
@@ -665,18 +776,21 @@ public class AdalDagskra extends javax.swing.JFrame {
             jDagskraMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDagskraMrgLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(jLeitaMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         jDagskraMrgLayout.setVerticalGroup(
             jDagskraMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDagskraMrgLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(jDagskraMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLeitaMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                    .addGroup(jDagskraMrgLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDagskraMrgLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLeitaMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jSkraLid.setText("Skrá nýjan lið í mína dagskrá");
@@ -692,20 +806,20 @@ public class AdalDagskra extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jEyda))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFaeraIMina)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGap(92, 92, 92)
                 .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jFaeraIMina))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(jEyda)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jEydaLid)
                     .addComponent(jSkraLid))
@@ -714,23 +828,26 @@ public class AdalDagskra extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSkraLid)
-                    .addComponent(jFaeraIMina))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jEydaLid))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jEyda)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jEyda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFaeraIMina)
+                        .addGap(23, 23, 23)))
+                .addComponent(jSkraLid)
+                .addGap(18, 18, 18)
+                .addComponent(jEydaLid)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -797,6 +914,22 @@ public class AdalDagskra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jSynaKlstMrgActionPerformed
 
+    private void jMinLengdTextMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinLengdTextMrgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMinLengdTextMrgActionPerformed
+
+    private void jMaxLengdTextMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaxLengdTextMrgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMaxLengdTextMrgActionPerformed
+
+    private void jMinLengdTextMrg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinLengdTextMrg1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMinLengdTextMrg1ActionPerformed
+
+    private void jMaxLengdTextMrg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaxLengdTextMrg1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMaxLengdTextMrg1ActionPerformed
+
     
     
     /**
@@ -858,9 +991,17 @@ public class AdalDagskra extends javax.swing.JFrame {
     private javax.swing.JTextField jLeitMrg;
     private javax.swing.JPanel jLeita;
     private javax.swing.JPanel jLeitaMrg;
+    private javax.swing.JSpinner jMaxLengdMrg;
+    private javax.swing.JSpinner jMaxLengdMrg1;
+    private javax.swing.JTextField jMaxLengdTextMrg;
+    private javax.swing.JTextField jMaxLengdTextMrg1;
     private javax.swing.JPanel jMinDagskra;
     private javax.swing.JList<String> jMinDagskraIDag;
     private javax.swing.JList<String> jMinDagskraMrg;
+    private javax.swing.JSpinner jMinLengdMrg;
+    private javax.swing.JSpinner jMinLengdMrg1;
+    private javax.swing.JTextField jMinLengdTextMrg;
+    private javax.swing.JTextField jMinLengdTextMrg1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
