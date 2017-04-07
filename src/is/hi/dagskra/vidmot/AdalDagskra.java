@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
+import java.util.Collections;
+
 
 /**
  * Aðal klasinn. viðmótsglugginn sem birtir dagskrána og býr til og notar hlutina af hinum klösunum
@@ -22,21 +24,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class AdalDagskra extends javax.swing.JFrame {
 
-    /**
-     * @return the dagskramodelMrg
-     */
-    public DagskraModel getDagskramodelMrg() {
-        return dagskramodelMrg;
-    }
 
-    /**
-     * @param dagskramodelMrg the dagskramodelMrg to set
-     */
-    public void setDagskramodelMrg(DagskraModel dagskramodelMrg) {
-        this.dagskramodelMrg = dagskramodelMrg;
-    }
-
-   
 
 
     
@@ -86,6 +74,11 @@ public class AdalDagskra extends javax.swing.JFrame {
      */
     private boolean stadfestaEyda = false;
     
+    /**
+     * ef true þá búið að smella á hnappinn og ekki búið að smella á dagskrárlið til að bæta í Mína Dagskrá
+     */
+    private boolean baetaLid = false;
+    
     
     /**
      * klstmodel er modelið fyrir jInnanKlst
@@ -98,6 +91,22 @@ public class AdalDagskra extends javax.swing.JFrame {
     private StyringComboBox styringComboBox;
     
     // getters og setters
+    
+    /**
+     * @return the baetaLid
+     */
+    public boolean isBaetaLid() {
+        return baetaLid;
+    }
+
+    /**
+     * @param baetaLid the baetaLid to set
+     */
+    public void setBaetaLid(boolean baetaLid) {
+        this.baetaLid = baetaLid;
+    }
+
+    
     
     /**
      * @return the stadfestaEyda
@@ -126,7 +135,22 @@ public class AdalDagskra extends javax.swing.JFrame {
     public void setDagskramodel(DagskraModel dagskramodel) {
         this.dagskramodel = dagskramodel;
     }
-  
+ 
+        /**
+     * @return the dagskramodelMrg
+     */
+    public DagskraModel getDagskramodelMrg() {
+        return dagskramodelMrg;
+    }
+
+    /**
+     * @param dagskramodelMrg the dagskramodelMrg to set
+     */
+    public void setDagskramodelMrg(DagskraModel dagskramodelMrg) {
+        this.dagskramodelMrg = dagskramodelMrg;
+    }
+
+   
     
     /**
      * Creates new form AdalDagskra
@@ -138,11 +162,8 @@ public class AdalDagskra extends javax.swing.JFrame {
         dagskramodel = new DagskraModel(false);
         dagskrain = new DagskraKatalogur(false);
         baetaDagskra(dagskrain);
-        // titlunum úr dagskrain (upprunal. dagskránni) hefur verið hlaðið í dagskramodel og prentaðir á console
-        
-        // g.r.f. að dagskrain sé working model
+        // titlunum úr dagskrain (upprunal. dagskránni) hefur verið hlaðið í dagskramodel
         jDagskrarLidir.setModel(dagskramodel);
-        
         jDagskrarLidir.getSelectionModel().addListSelectionListener(new StyringListi(this, false));        
         // listener hefur verið tengdur við listann 
         
@@ -150,28 +171,8 @@ public class AdalDagskra extends javax.swing.JFrame {
         
         // set upp gögn fyrir leitina fyrir daginn í dag:     
         setjaUppLeitina(false);
-        // geri gögn til að hlaða inn inn í ComboBoxið fyrir klukkustundirnar
-//        String[] klukkustundir = new String[24-17+1];
-//        int j = 0; 
-//        for(int i = 17; i<24; i++)
-//        {
-//       
-//            klukkustundir[j++] = String.valueOf(i);
-//        }
-//        klukkustundir[j] = "00";
-//        
-//
-//        klstmodel = new DefaultComboBoxModel(klukkustundir);
-// 
-//        // set gögn í jInnanKlst
-//        jInnanKlst.setModel(klstmodel);
-//     
-//        styringComboBox = new StyringComboBox(this, false);
-//        // tengi listener við jInnanKlst
-//        jInnanKlst.addActionListener(styringComboBox);
-        
-        
-        
+        // ComboBoxið fyrir klukkustundirnar hefur verið sett upp
+
           
         // listinn fyrir dagskrárliði á morgun settur upp:
         dagskramodelMrg = new DagskraModel(true);
@@ -187,10 +188,60 @@ public class AdalDagskra extends javax.swing.JFrame {
         
         jDagskrarLidirMrg.getSelectionModel().addListSelectionListener(new StyringListi(this,true));        
         
+        setjaUppLeitina(true);
+        
+        // set upp gögn fyrir Mína Dagskrá
+        dagskramodelMinIDag = new DagskraModel(false);
+       jMinDagskraIDag.setModel(dagskramodelMinIDag);
+    
+        dagskramodelMinMrg = new DagskraModel(true);
+        jMinDagskraMrg.setModel(dagskramodelMinMrg);
+
         
         
     }
-
+    /**
+     * raðar Minni Dagskrá í stafrófsröð, annað hvort í dag eða á morgun   
+     */
+    public void sortDagskra(boolean aMorgun){
+        if(aMorgun){
+            ArrayList list = Collections.list(dagskramodelMinMrg.elements());
+            System.out.println(list);
+            Collections.sort(list);
+            // hreinsa módelið 
+            dagskramodelMinMrg.clear();
+            // bæti aftur í módelið 
+            for(Object lidur : list){
+                dagskramodelMinMrg.addElement(lidur);
+            }         
+        }else{
+            ArrayList list = Collections.list(dagskramodelMinIDag.elements());
+            System.out.println(list);
+            Collections.sort(list);
+            // hreinsa módelið 
+            dagskramodelMinIDag.clear();
+            // bæti aftur í módelið 
+            for(Object lidur : list){
+                dagskramodelMinIDag.addElement(lidur);
+            }
+        }
+    }
+    /**
+     * bætir dagskrárlið númer index (í tímaröð dagskránnar) í Mína Dagskrá í viðmótinu og 
+     * @param index  0 <= index < fjöldi dagskrárliða í dag (eða á morgun)
+     * @param aMorgun satt ef dagskrárliðurinn er í dagskrá morgundagsins, false ef í dag 
+     */
+    public void baetaLidVidMina(int index, boolean aMorgun){
+        if(aMorgun){
+             Root.Results lidurTilAdBirta = dagskramodelMinMrg.getDagskrain().getDagskrarLidir().get(index);
+            String textiTilAdBirta = lidurTilAdBirta.getStartTime().substring(11,16) + "  " + lidurTilAdBirta.getTitle();
+            dagskramodelMinMrg.addElement(textiTilAdBirta);
+        }else{
+            Root.Results lidurTilAdBirta = dagskramodelMinIDag.getDagskrain().getDagskrarLidir().get(index);
+            String textiTilAdBirta = lidurTilAdBirta.getStartTime().substring(11,16) + "  " + lidurTilAdBirta.getTitle();
+            dagskramodelMinIDag.addElement(textiTilAdBirta);
+        }
+    }
      /**
      * setur titlana úr dagskra í dagskramodel 
      * @param dagskra 
@@ -460,7 +511,6 @@ public class AdalDagskra extends javax.swing.JFrame {
         jMaxLengdTextMrg1 = new javax.swing.JTextField();
         jMinLengdTextMrg1 = new javax.swing.JTextField();
         jLabelDagskra = new javax.swing.JLabel();
-        jEyda = new javax.swing.JButton();
         jDagskraMrg = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jDagskrarLidirMrg = new javax.swing.JList<>();
@@ -487,11 +537,13 @@ public class AdalDagskra extends javax.swing.JFrame {
         jSkraLid = new javax.swing.JButton();
         jEydaLid = new javax.swing.JButton();
         jFaeraIMina = new javax.swing.JButton();
+        jEyda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1256, 1256));
         setSize(new java.awt.Dimension(1500, 1800));
 
+        jDagskra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jDagskra.setPreferredSize(new java.awt.Dimension(329, 700));
 
         jDagskrarLidir.setModel(new javax.swing.AbstractListModel<String>() {
@@ -590,7 +642,7 @@ public class AdalDagskra extends javax.swing.JFrame {
                                 .addComponent(jLeit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jLeitaLayout.setVerticalGroup(
             jLeitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -620,16 +672,6 @@ public class AdalDagskra extends javax.swing.JFrame {
 
         jLabelDagskra.setText("Dagskráin í dag:");
 
-        jEyda.setText("Eyða ");
-        jEyda.setFocusable(false);
-        jEyda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jEyda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jEyda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEydaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jDagskraLayout = new javax.swing.GroupLayout(jDagskra);
         jDagskra.setLayout(jDagskraLayout);
         jDagskraLayout.setHorizontalGroup(
@@ -637,16 +679,13 @@ public class AdalDagskra extends javax.swing.JFrame {
             .addGroup(jDagskraLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDagskraLayout.createSequentialGroup()
+                        .addComponent(jLabelDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jDagskraLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDagskraLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jEyda)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jDagskraLayout.setVerticalGroup(
             jDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -655,14 +694,15 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addComponent(jLabelDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jDagskraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDagskraLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDagskraLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(jEyda))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDagskraLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLeita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
+
+        jDagskraMrg.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jDagskrarLidirMrg.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -900,24 +940,43 @@ public class AdalDagskra extends javax.swing.JFrame {
         );
 
         jFaeraIMina.setText("Bæta dagskrárlið í mína dagskrá");
+        jFaeraIMina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFaeraIMinaActionPerformed(evt);
+            }
+        });
+
+        jEyda.setText("Eyða ");
+        jEyda.setFocusable(false);
+        jEyda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jEyda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jEyda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEydaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFaeraIMina)
-                        .addGap(67, 67, 67)
-                        .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGap(241, 241, 241)
+                        .addComponent(jEyda)
+                        .addGap(47, 47, 47)
+                        .addComponent(jFaeraIMina)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -925,13 +984,13 @@ public class AdalDagskra extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jEyda)
                             .addComponent(jFaeraIMina))
-                        .addGap(46, 46, 46))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addGap(17, 17, 17))
+                    .addComponent(jDagskraMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jMinDagskra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -940,6 +999,7 @@ public class AdalDagskra extends javax.swing.JFrame {
 
     private void jEydaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEydaActionPerformed
         setEyda(true);
+        setBaetaLid(false);
     }//GEN-LAST:event_jEydaActionPerformed
 
     private void jFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFilterActionPerformed
@@ -1014,6 +1074,11 @@ public class AdalDagskra extends javax.swing.JFrame {
     private void jMaxLengdTextMrg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaxLengdTextMrg1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMaxLengdTextMrg1ActionPerformed
+
+    private void jFaeraIMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFaeraIMinaActionPerformed
+        setBaetaLid(!isBaetaLid());
+        eyda = false;
+    }//GEN-LAST:event_jFaeraIMinaActionPerformed
 
     
     
