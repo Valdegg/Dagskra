@@ -9,6 +9,8 @@ package is.hi.dagskra.gogn;
  import is.hi.dagskra.vinnsla.DagskraKatalogur;
 import javax.swing.DefaultListModel;
 
+
+
 /**
  * model sem birt er í JList, geymir lista af dagskrárliðum
  * @author Valdimar Ágúst vae11@hi.is
@@ -22,13 +24,19 @@ public class DagskraModel extends DefaultListModel {
     private DagskraKatalogur dagskrain;
     
     /**
+     * true ef þetta model er fyrir dagskrárliði morgundagsins, false ef fyrir daginn í dag
+     */
+    boolean aMorgun;
+    
+    /**
      * smiðu
      */
-    public DagskraModel(){
-        dagskrain = new DagskraKatalogur();
+    public DagskraModel(boolean aMorgun){
+        this.aMorgun = aMorgun;
+        dagskrain = new DagskraKatalogur(aMorgun);
         
     }
-
+    
         /**
      * @return the dagskrain
      */

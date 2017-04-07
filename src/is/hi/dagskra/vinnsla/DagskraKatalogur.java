@@ -23,6 +23,7 @@ public class DagskraKatalogur {
 
     // Fastar
      private static final String SJONVARPSDAGSKRAXML = "Sjonvarpsdagskra.xml";
+     private static final String SJONVARPSDAGSKRAMRGXML = "SjonvarpsdagskraMrg.xml";
      private static final String VILLA_Í_LESTRI_Á_XML_SKRÁ = "Villa í lestri á XML skrá";
      private static final String SKRÁ_MEÐ_XML_GÖGNUM_FANNST_EKKI = "Skrá með XML gögnum fannst ekki";
   
@@ -47,16 +48,22 @@ public class DagskraKatalogur {
     }
     
     /**
-     * Smiður sem les inn XML skrána Sjonvarpsdagskrá
+     * Smiður sem les inn XML skrána Sjonvarpsdagskrá eða SjónvarpsdagskráMrg, eftir því hvað aMorgun sé 
      * Birtir villu ef XML skrá fannst ekki 
+     * @param aMorgun satt ef SjonvarpsdagskraMrg er lesin, false ef Sjonvarpsdagskra er
      */
-    public DagskraKatalogur () {
+    public DagskraKatalogur (boolean aMorgun) {
           File XMLfile=null;
         try{
             JAXBContext jaxbContext = JAXBContext.newInstance(Root.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             
-            URL urlFyrirDagskra = this.getClass().getResource(SJONVARPSDAGSKRAXML);
+            URL urlFyrirDagskra;
+            if(aMorgun){
+                urlFyrirDagskra = this.getClass().getResource(SJONVARPSDAGSKRAMRGXML);
+            }else{
+                urlFyrirDagskra = this.getClass().getResource(SJONVARPSDAGSKRAXML);
+            }
             try {
                 XMLfile = new File(urlFyrirDagskra.getPath());
             } catch(NullPointerException e) {

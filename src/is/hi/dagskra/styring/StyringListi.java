@@ -58,32 +58,46 @@ public class StyringListi implements ListSelectionListener {
                 
                 if(dagskrarGlugginn.isStadfestaEyda()){
                     
-                    //eydaDagskrarLid(index);
+                    
                     dagskrarGlugginn.eydaDagskrarLid(index,aMorgun);
                     lsm.removeIndexInterval(index, index);
                     dagskrarGlugginn.setEyda(false);                
                     dagskrarGlugginn.setStadfestaEyda(false);                                               
+                    
                 }           
+            }else if (dagskrarGlugginn.isBaetaLid()){
+                // smellt hefur verið á bæta lið í mína dagskrá 
+                dagskrarGlugginn.baetaLidVidMina(index,aMorgun);
+                dagskrarGlugginn.setBaetaLid(false);
+                dagskrarGlugginn.sortDagskra(aMorgun);
+               
+                
             }else{
-                synaDagskrarLid(index);
+                synaDagskrarLid(index, aMorgun);
             }
         }
       
     }
     
+
+    
     /**
      * opnar dialog með upplýsingar um valinn dagskrárlið
      * <p>
      * @param index indexið á dagskrárliðinn í dagskráliðalistanum
+     * @param aMorgun true ef listinn er dagskrá morgundagsins, false ef dagskrá í dag
      */
-    private void synaDagskrarLid(int index){
+    private void synaDagskrarLid(int index, boolean aMorgun){
          // búa til SkodaDagskrarLid glugga
         SkodaDagskrarLid dagskrargluggi = new SkodaDagskrarLid(dagskrarGlugginn, true);        
         // sækjum gögnin hingað og sendum inn í dialogið gegnum setjaGogn()
             // gögnin eru í listanum dagskrain.getDagskrarLidir
             // við vinnum bara með 1 dagskrárlið í einu, indexið á hann notum við svo til að velja réttan lið
-        dagskrarlidur = dagskrarGlugginn.getDagskramodel().getDagskrain().getDagskrarLidir().get(index);
-   
+        if(aMorgun){
+            dagskrarlidur = dagskrarGlugginn.getDagskramodelMrg().getDagskrain().getDagskrarLidir().get(index);            
+        }else{
+            dagskrarlidur = dagskrarGlugginn.getDagskramodel().getDagskrain().getDagskrarLidir().get(index);
+        }
         dagskrargluggi.setjaGogn(dagskrarlidur);
         dagskrargluggi.setVisible(true);
     }
