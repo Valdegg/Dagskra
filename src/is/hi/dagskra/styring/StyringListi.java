@@ -12,7 +12,7 @@ import javax.swing.ListSelectionModel;
 import is.hi.dagskra.gogn.Root;
 
 /**
- * Klasi sem er listener fyrir þegar stak er valið úr listanum í AdalDagskra
+ * Klasi sem er listener fyrir þegar stak er valið úr listanum jDagskrarLidir/jDagskrarLidirMrg í AdalDagskra
  * @author Valdimar Ágúst Eggertsson 
  */
 public class StyringListi implements ListSelectionListener {
@@ -22,6 +22,10 @@ public class StyringListi implements ListSelectionListener {
      */
     private final AdalDagskra dagskrarGlugginn;
     private Root.Results dagskrarlidur;
+    /**
+     * segir til um hvorum dagskrárlistanum verið er að stýra 
+     * true ef listinn er jDagskrarLidirMrg, false ef jDagskrarLidir
+     */    
     private boolean aMorgun;
     
     
@@ -32,22 +36,24 @@ public class StyringListi implements ListSelectionListener {
      */ 
     public StyringListi(AdalDagskra dagskrain, boolean aMorgun){
         dagskrarGlugginn = dagskrain;
-        this.aMorgun = aMorgun;
-        //prentaDagskrarlidi();
+        this.aMorgun = aMorgun;        
         
     }
    
     /**
-     * Event handler fyrir þegar stak í listanum er valið. Birtir í dialog upplýsingar um valinn dagskrárlið.
-     * 
+     * Event handler fyrir þegar stak í listanum er valið. Mismunandi hegðun eftir hvort Skoða, Bæta eða Eyða hafi verið valið.
+     * <p>
+     * Skoða: Birtir í dialog upplýsingar um valinn dagskrárlið.
+     * Bæta: Bætir upplýsingar um valinn dagskrárlið í Mína Dagskrá
+     * Eyða: Eyðir upplýsingum um valinn dagskrárlið úr listanum sem verið er að stýra.
+     * </p>
      * @param event 
      */
     @Override
     public void valueChanged(ListSelectionEvent event){
 
         ListSelectionModel lsm = (ListSelectionModel)event.getSource();  // af hverju kasta? því getSource skilar Object
-         int index = lsm.getMinSelectionIndex();   
-         System.out.println(lsm);
+        int index = lsm.getMinSelectionIndex();   // indexið í listanum
        
         if(index != -1){
             // selection is non-empty
@@ -65,15 +71,19 @@ public class StyringListi implements ListSelectionListener {
                     dagskrarGlugginn.setStadfestaEyda(false);                                               
                     
                 }           
-            }else if (dagskrarGlugginn.isBaetaLid()){
+            }
+            if (dagskrarGlugginn.isBaetaLid()){
                 // smellt hefur verið á bæta lið í mína dagskrá 
                 dagskrarGlugginn.baetaLidVidMina(index,aMorgun);
-                dagskrarGlugginn.setBaetaLid(false);
                 dagskrarGlugginn.sortDagskra(aMorgun);
-               
+                dagskrarGlugginn.setBaetaLid(false);
                 
-            }else{
+            }
+            if (dagskrarGlugginn.isSkodaLid()){
+
                 synaDagskrarLid(index, aMorgun);
+                dagskrarGlugginn.setSkodaLid(false);
+                
             }
         }
       
@@ -90,13 +100,11 @@ public class StyringListi implements ListSelectionListener {
     private void synaDagskrarLid(int index, boolean aMorgun){
          // búa til SkodaDagskrarLid glugga
         SkodaDagskrarLid dagskrargluggi = new SkodaDagskrarLid(dagskrarGlugginn, true);        
-        // sækjum gögnin hingað og sendum inn í dialogið gegnum setjaGogn()
-            // gögnin eru í listanum dagskrain.getDagskrarLidir
-            // við vinnum bara með 1 dagskrárlið í einu, indexið á hann notum við svo til að velja réttan lið
+        // sækjum gögnin hingað og sendum inn í dialogið gegnum setjaGogn()    
         if(aMorgun){
             dagskrarlidur = dagskrarGlugginn.getDagskramodelMrg().getDagskrain().getDagskrarLidir().get(index);            
         }else{
-            dagskrarlidur = dagskrarGlugginn.getDagskramodel().getDagskrain().getDagskrarLidir().get(index);
+           dagskrarlidur = dagskrarGlugginn.getDagskramodel().getDagskrain().getDagskrarLidir().get(index);
         }
         dagskrargluggi.setjaGogn(dagskrarlidur);
         dagskrargluggi.setVisible(true);
@@ -125,25 +133,13 @@ public class StyringListi implements ListSelectionListener {
     }
     /**
      * býr til StadfestaEydingu dialog glugga og opnar hann
+     * eftirá er stadfestaEyda true/false eftir hvað efur verið valið
      */
     private void opnaStadfestingarGlugga(){
         StadfestaEydinguGluggi stadfestingarGluggi = new StadfestaEydinguGluggi(dagskrarGlugginn,true);
-        stadfestingarGluggi.setVisible(true);
-        
+        stadfestingarGluggi.setVisible(true);        
     }
 
-    /**
-     * @return the aMorgun
-     */
-    public boolean isaMorgun() {
-        return aMorgun;
-    }
 
-    /**
-     * @param aMorgun the aMorgun to set
-     */
-    public void setaMorgun(boolean aMorgun) {
-        this.aMorgun = aMorgun;
-    }
         
 }

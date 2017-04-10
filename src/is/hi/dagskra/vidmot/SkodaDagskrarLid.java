@@ -33,24 +33,28 @@ public class SkodaDagskrarLid extends javax.swing.JDialog {
         
 
         String titill = "" + dagskrarlidur.getTitle();
-        String upphafstimi = "Upphafstimi: " + dagskrarlidur.getStartTime().substring(11,16);
+        String upphafstimi = "Kl. " + dagskrarlidur.getStartTime().substring(11,16);
         String seria = String.valueOf(dagskrarlidur.getSeries().getSeries()) ;
         String þattur = String.valueOf(dagskrarlidur.getSeries().getEpisode());
         String seriaOgÞattur = ("Sería " + seria) + (" Þáttur " + þattur);
         String lysing = "Lýsing: " + dagskrarlidur.getDescription();    
         
         XMLGregorianCalendar timalengd = dagskrarlidur.getDuration();
-        String timalengdKlstMin = "Tímalengd: " + timalengd.getHour() + (" klst og " + (timalengd.getMinute() + " mín"));
-        
-        if(dagskrarlidur.getLive().equals("true")){
-            jLive.setText("Í beinni útsendingu");       
+        String timalengdKlstMin;
+        if(timalengd.getHour()>0){
+            timalengdKlstMin = timalengd.getHour() + (" klst og " + (timalengd.getMinute() + " mín"));            
         }else{
-            jLive.setText("Ekki í beinni útsendingu"); 
+            timalengdKlstMin = timalengd.getMinute() + " mín";            
         }
+
+        
+//       sleppum live
+
         jTitill.setText(titill);
         jUpphafstimi.setText(upphafstimi);
         jLysing.setText(lysing);
-        jS7E8.setText(seriaOgÞattur);
+        jLysing.setCaretPosition(0);
+   // sleppum seríu og þætti
         jTimalengd.setText(timalengdKlstMin);
        
 
@@ -71,18 +75,18 @@ public class SkodaDagskrarLid extends javax.swing.JDialog {
         jS7E8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jLysing = new javax.swing.JTextArea();
-        jLive = new javax.swing.JLabel();
         jLoka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTitill.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         jTitill.setText("jLabel1");
 
         jUpphafstimi.setText("jLabel2");
 
         jTimalengd.setText("jLabel2");
 
-        jS7E8.setText("jLabel2");
+        jS7E8.setText(" ");
 
         jLysing.setEditable(false);
         jLysing.setColumns(20);
@@ -108,8 +112,7 @@ public class SkodaDagskrarLid extends javax.swing.JDialog {
                     .addComponent(jTitill, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                     .addComponent(jUpphafstimi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTimalengd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jS7E8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLive, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jS7E8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -130,11 +133,9 @@ public class SkodaDagskrarLid extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTimalengd)
                         .addGap(23, 23, 23)
-                        .addComponent(jS7E8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLive, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jS7E8))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(34, 34, 34)
                 .addComponent(jLoka)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -189,7 +190,6 @@ public class SkodaDagskrarLid extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLive;
     private javax.swing.JButton jLoka;
     private javax.swing.JTextArea jLysing;
     private javax.swing.JLabel jS7E8;

@@ -30,7 +30,6 @@
                   <Component id="jUpphafstimi" alignment="0" max="32767" attributes="0"/>
                   <Component id="jTimalengd" alignment="0" max="32767" attributes="0"/>
                   <Component id="jS7E8" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLive" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" max="-2" attributes="0"/>
@@ -56,12 +55,10 @@
                       <Component id="jTimalengd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jS7E8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLive" min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="138" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jLoka" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
@@ -71,6 +68,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jTitill">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Verdana" size="10" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
@@ -86,7 +86,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jS7E8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -107,8 +107,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLive">
-    </Component>
     <Component class="javax.swing.JButton" name="jLoka">
       <Properties>
         <Property name="text" type="java.lang.String" value="Loka"/>

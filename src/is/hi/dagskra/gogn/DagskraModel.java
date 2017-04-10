@@ -28,9 +28,7 @@ public class DagskraModel extends DefaultListModel {
      */
     boolean aMorgun;
     
-    /**
-     * smiðu
-     */
+
     public DagskraModel(boolean aMorgun){
         this.aMorgun = aMorgun;
         dagskrain = new DagskraKatalogur(aMorgun);
