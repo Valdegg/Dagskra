@@ -24,6 +24,20 @@ import javax.swing.SpinnerDateModel;
  */
 public class AdalDagskra extends javax.swing.JFrame {
 
+    /**
+     * @return the jMinDagskra
+     */
+    public javax.swing.JPanel getjMinDagskra() {
+        return jMinDagskra;
+    }
+
+    /**
+     * @param jMinDagskra the jMinDagskra to set
+     */
+    public void setjMinDagskra(javax.swing.JPanel jMinDagskra) {
+        this.jMinDagskra = jMinDagskra;
+    }
+
  
     /**
      * upprunalegu gögnin sem hlaðið er inn fyrir lista dagskránnar í dageru geymd í dagskrain
@@ -532,13 +546,16 @@ public class AdalDagskra extends javax.swing.JFrame {
             // þetta eyðir ekki almennilega úr gögnunum
             List<Root.Results> dagskrarLidir = dagskramodelMrg.getDagskrain().getDagskrarLidir();
             dagskrarLidir.remove(lidurNr);
-            // nú er búið að eyða almennilega úr gögnunum          
+            // nú er búið að eyða almennilega úr gögnunum  
+            
+         
         }else{
             dagskramodel.remove(lidurNr);
             // þetta eyðir ekki almennilega úr gögnunum
             List<Root.Results> dagskrarLidir = dagskramodel.getDagskrain().getDagskrarLidir();
             dagskrarLidir.remove(lidurNr);
             // nú er búið að eyða almennilega úr gögnunum
+            
         }
     }
     /**
@@ -750,6 +767,21 @@ public class AdalDagskra extends javax.swing.JFrame {
 
     }
 
+    /**
+     * samræmir módelið fyrir mína dagskrá og dagskrána (ef búið er að eyða úr dagskránni)
+     * með því að setja gögnin úr 
+     */
+    public void samraemaMina(boolean aMorgun){
+        if(aMorgun){
+
+            dagskramodelMinMrg.setDagskrain( dagskramodelMrg.getDagskrain() );
+        
+        }else{
+          dagskramodelMinIDag.setDagskrain( dagskramodel.getDagskrain());
+            
+            
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
