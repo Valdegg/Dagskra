@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.ListSelectionModel;
 import is.hi.dagskra.gogn.Root;
+import java.util.List;
 
 /**
  * Klasi sem er listener fyrir þegar stak er valið úr listanum jDagskrarLidir/jDagskrarLidirMrg í AdalDagskra
@@ -54,7 +55,14 @@ public class StyringListi implements ListSelectionListener {
 
         ListSelectionModel lsm = (ListSelectionModel)event.getSource();  // af hverju kasta? því getSource skilar Object
         int index = lsm.getMinSelectionIndex();   // indexið í listanum
-       
+        
+        List<Root.Results> dagskrarLidir;
+
+        if(aMorgun){
+                 dagskrarLidir = dagskrarGlugginn.getDagskramodelMrg().getDagskrain().getDagskrarLidir();
+             }else{
+                 dagskrarLidir = dagskrarGlugginn.getDagskramodel().getDagskrain().getDagskrarLidir();
+             }
         if(index != -1){
             // selection is non-empty
             
@@ -64,16 +72,22 @@ public class StyringListi implements ListSelectionListener {
                 
                 if(dagskrarGlugginn.isStadfestaEyda()){
                     
-                    
+                    dagskrarGlugginn.addEyddumLid(dagskrarLidir.get(index),aMorgun);
                     dagskrarGlugginn.eydaDagskrarLid(index,aMorgun);
+                    
                     lsm.removeIndexInterval(index, index);
                     dagskrarGlugginn.setEyda(false);                
-                    dagskrarGlugginn.setStadfestaEyda(false);                                               
+                    dagskrarGlugginn.setStadfestaEyda(false);
+                    
+
+                   
                     
                 }           
             }
             if (dagskrarGlugginn.isBaetaLid()){
                 // smellt hefur verið á bæta lið í mína dagskrá 
+                // gerum samræmi milli Minnar Dagskrár og dagskránnar, því það gæti verið að búið sé að eyða úr dagskránni
+                dagskrarGlugginn.samraemaMina(aMorgun);
                 dagskrarGlugginn.baetaLidVidMina(index,aMorgun);
                 dagskrarGlugginn.sortDagskra(aMorgun);
                 dagskrarGlugginn.setBaetaLid(false);

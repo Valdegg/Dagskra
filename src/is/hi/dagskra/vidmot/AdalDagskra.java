@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 import java.util.Collections;
+import java.util.Iterator;
 import javax.swing.SpinnerDateModel;
 
 
@@ -23,6 +24,34 @@ import javax.swing.SpinnerDateModel;
  * 
  */
 public class AdalDagskra extends javax.swing.JFrame {
+
+    /**
+     * @return the eyddirLidirMrg
+     */
+    public ArrayList<Root.Results> getEyddirLidirMrg() {
+        return eyddirLidirMrg;
+    }
+
+    /**
+     * @param eyddirLidirMrg the eyddirLidirMrg to set
+     */
+    public void setEyddirLidirMrg(ArrayList<Root.Results> eyddirLidirMrg) {
+        this.eyddirLidirMrg = eyddirLidirMrg;
+    }
+
+    /**
+     * @return the eyddirLidir
+     */
+    public ArrayList<Root.Results> getEyddirLidir() {
+        return eyddirLidir;
+    }
+
+    /**
+     * @param eyddirLidir the eyddirLidir to set
+     */
+    public void setEyddirLidir(ArrayList<Root.Results> eyddirLidir) {
+        this.eyddirLidir = eyddirLidir;
+    }
 
     /**
      * @return the jMinDagskra
@@ -73,6 +102,16 @@ public class AdalDagskra extends javax.swing.JFrame {
      * ( gögnin eru geymd sem dagskramodelMinMrg sem er DefaultListModel )
      */
     private DagskraModel dagskramodelMinMrg;
+    
+    /**
+     * liðir sem hefur verið eytt
+     */
+    private ArrayList<Root.Results> eyddirLidir = new ArrayList<>();
+
+/**
+     * liðir sem hefur verið eytt
+     */
+    private ArrayList<Root.Results> eyddirLidirMrg = new ArrayList<>();
     
     
 // 
@@ -541,22 +580,27 @@ public class AdalDagskra extends javax.swing.JFrame {
      * @param aMorgun ef true, þá eyðir á morgun, annars í dag
      */
     public void eydaDagskrarLid(int lidurNr, boolean aMorgun){
+        
         if(aMorgun){
             dagskramodelMrg.remove(lidurNr);
             // þetta eyðir ekki almennilega úr gögnunum
-            List<Root.Results> dagskrarLidir = dagskramodelMrg.getDagskrain().getDagskrarLidir();
+            List<Root.Results> dagskrarLidir = dagskramodelMrg.getDagskrain().getDagskrarLidir();            
+           // addEyddumLid(dagskrarLidir.get(lidurNr),aMorgun);
             dagskrarLidir.remove(lidurNr);
             // nú er búið að eyða almennilega úr gögnunum  
+            
             
          
         }else{
             dagskramodel.remove(lidurNr);
             // þetta eyðir ekki almennilega úr gögnunum
             List<Root.Results> dagskrarLidir = dagskramodel.getDagskrain().getDagskrarLidir();
+          //  getEyddirLidir().add(dagskrarLidir.get(lidurNr));
             dagskrarLidir.remove(lidurNr);
             // nú er búið að eyða almennilega úr gögnunum
             
         }
+      
     }
     /**
      * birtir bara þá liði í jDagskrarLidir/jDagskrarLidirMrg sem eru í mesta lagi (eða minnsta lagi) timalengd að lengd
@@ -664,7 +708,7 @@ public class AdalDagskra extends javax.swing.JFrame {
             }else{
                 dagskrarLidir = dagskramodel.getDagskrain().getDagskrarLidir();
             }
-            
+             
 
 
             int fjoldiStakaIListanum = dagskrarLidir.size();
@@ -679,7 +723,8 @@ public class AdalDagskra extends javax.swing.JFrame {
                 }else{
                     dagskrarlidur = dagskrarLidir.get(lidurNr).getDescription();
                 }
-                if(dagskrarlidur.contains(leitarord)){
+                if(dagskrarlidur.contains(leitarord) || dagskrarlidur.toLowerCase().contains(leitarord.toLowerCase()))                    
+                {
                     // dagskrárliðurinn uppfyllir leitarskilyrðin
                     lidurNr++;
                 }else{
@@ -694,21 +739,113 @@ public class AdalDagskra extends javax.swing.JFrame {
         
         
     }
+     
+    /**
+     * bætir lið með index index úr dagskraModel/Mrg í eyddirLidir
+     * @param index 
+     */
+    public void addEyddumLid(Root.Results lidur, boolean aMorgun){
+        if(aMorgun){
+            eyddirLidirMrg.add(lidur);
+            System.out.println(lidur.getTitle());
+        }else{
+            eyddirLidir.add(lidur);
+        }
+
+    }
    /**
     * endurstillir dagskrána þannig að allir dagskrárliðir eru inni
     * @param aMorgun true ef verið er að endustilla dagskrá morgundagsins, false ef í dag
+    * 
     */
     public void endurstillaDagskra(boolean aMorgun){
             if(aMorgun){
+                
                 dagskramodelMrg = new DagskraModel(aMorgun);
+                DagskraKatalogur nyDagskra = dagskramodelMrg.getDagskrain();                
+                
+                List<Root.Results> dagskrarlidir = nyDagskra.getDagskrarLidir();
+             
+                ArrayList<String> eyddirTitlar = new ArrayList();               
+                for(Root.Results eyddurLidur : eyddirLidirMrg){
+                    eyddirTitlar.add(eyddurLidur.getTitle());
+                }
+           
+                // eyddirTitlar inniheldur titlum sem hefur verið eytt
+
+                ArrayList<Root.Results> geyma = new ArrayList();                                
+                
+                int[] indexEyddraLida = new int[dagskrarlidir.size()];
+                int fjoldiEyddra = 0;
+                int index = 0;
+                for(Root.Results dagskrarlidur : dagskrarlidir){
+                     
+                    if ( !eyddirTitlar.contains(dagskrarlidur.getTitle())){
+                        geyma.add(dagskrarlidur);                            
+                    }else{
+                        System.out.println(dagskrarlidur.getTitle());
+                        indexEyddraLida[fjoldiEyddra++] = index;
+                    }
+                    index++;
+                }                    
+               
+                // geyma inniheldur titlana sem hefur ekki verið eytt 
+
+                
+                nyDagskra.setDagskrarLidir( geyma);
+                
+                dagskramodelMrg.setDagskrain(nyDagskra);
+                
+                dagskramodelMrg.getDagskrain().birtaDagskrarlid();
+                
+                // dagskramodelMrg er með gögnin sem eiga að vera(úr geyma), en á eftir að bæta við elements í modelið
+             
+                
+                int j = 0;
+                for(Root.Results dagskrarlidur : geyma){
+                   dagskramodelMrg.add(j++,dagskrarlidur.getStartTime().substring(11,16) + "  " + dagskrarlidur.getTitle());
+                }
+                
                 jDagskrarLidirMrg.setModel(dagskramodelMrg);
+                    jMaxTimeMrg.setText("");
+                    jMinTimeMrg.setText("");
+                    jFilterMrg.setText("");
         
             }else{
-                dagskramodel = new DagskraModel(aMorgun);            
-                jDagskrarLidir.setModel(dagskramodel);
+                dagskramodel = new DagskraModel(aMorgun);  
+                DagskraKatalogur nyDagskra = dagskramodel.getDagskrain();                                
+                List<Root.Results> dagskrarlidir =  nyDagskra.getDagskrarLidir();
                 
+                ArrayList<String> eyddirTitlar = new ArrayList();               
+                for(Root.Results eyddurLidur : eyddirLidir){
+                    eyddirTitlar.add(eyddurLidur.getTitle());
+                }
+           
+                // eyddirTitlar inniheldur titlum sem hefur verið eytt
+
+                ArrayList<Root.Results> geyma = new ArrayList();
+                
+                for(Root.Results dagskrarlidur : dagskrarlidir){ 
+                    if ( !eyddirTitlar.contains(dagskrarlidur.getTitle())){
+                        geyma.add(dagskrarlidur);                            
+                    }
+                }              
+                // geyma inniheldur titlana sem hefur ekki verið eytt                                
+                
+                nyDagskra.setDagskrarLidir( geyma);                
+                dagskramodel.setDagskrain(nyDagskra);
+                
+                for(Root.Results dagskrarlidur : geyma){
+                   dagskramodel.addElement(dagskrarlidur.getStartTime().substring(11,16) + "  " + dagskrarlidur.getTitle());
+                }
+                
+                
+                jDagskrarLidir.setModel(dagskramodel);
+                    jMaxTime.setText("");
+                    jMinTime.setText("");
+                    jFilter.setText("");
             }
-            baetaDagskra(aMorgun);  
+           // baetaDagskra(aMorgun);  
             
     }
     
@@ -874,6 +1011,11 @@ public class AdalDagskra extends javax.swing.JFrame {
         });
 
         jInnanKlst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jInnanKlst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jInnanKlstActionPerformed(evt);
+            }
+        });
 
         jEndurstilla.setText("Sjá alla dagskrárliði");
         jEndurstilla.addActionListener(new java.awt.event.ActionListener() {
@@ -1174,12 +1316,8 @@ public class AdalDagskra extends javax.swing.JFrame {
                         .addComponent(jFilterMrg)
                         .addGap(40, 40, 40)))
                 .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jMinMaxPanelMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLeitaMrgLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jMinMaxLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jMinMaxPanelMrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jMinMaxLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(jLeitaMrgLayout.createSequentialGroup()
                 .addGroup(jLeitaMrgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1446,6 +1584,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      */
     private void jEndurstillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEndurstillaActionPerformed
         endurstillaDagskra(false);
+
     }//GEN-LAST:event_jEndurstillaActionPerformed
 
     private void jLeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLeitActionPerformed
@@ -1479,6 +1618,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      */
     private void jEndurstillaMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEndurstillaMrgActionPerformed
         endurstillaDagskra(true);
+  
     }//GEN-LAST:event_jEndurstillaMrgActionPerformed
 
     private void jLeitMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLeitMrgActionPerformed
@@ -1524,7 +1664,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      * @param evt 
      */
     private void jMinTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinTimeActionPerformed
-        endurstillaDagskra(false);
+        //endurstillaDagskra(false);
         String minTime = jMinTime.getText();      
         if(minTime.matches("\\d\\d:\\d\\d" )){
 
@@ -1538,7 +1678,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      * @param evt 
      */
     private void jMaxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaxTimeActionPerformed
-        endurstillaDagskra(false);
+       // endurstillaDagskra(false);
         String maxTime = jMaxTime.getText();      
         if(maxTime.matches("\\d\\d:\\d\\d" )){
 
@@ -1554,7 +1694,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      * @param evt 
      */
     private void jMinTimeMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinTimeMrgActionPerformed
-        endurstillaDagskra(true);
+        //endurstillaDagskra(true);
         String minTime = jMinTimeMrg.getText();      
         if(minTime.matches("\\d\\d:\\d\\d" )){            
             filteraTimalengd(minTime,true,true);
@@ -1565,7 +1705,7 @@ public class AdalDagskra extends javax.swing.JFrame {
      * @param evt 
      */
     private void jMaxTimeMrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaxTimeMrgActionPerformed
-        endurstillaDagskra(false);
+       // endurstillaDagskra(false);
         String maxTime = jMaxTimeMrg.getText();      
         if(maxTime.matches("\\d\\d:\\d\\d" )){            
             filteraTimalengd(maxTime,true,false);
@@ -1588,6 +1728,10 @@ public class AdalDagskra extends javax.swing.JFrame {
         SkraLidMinDagskra skraningarGluggi = new SkraLidMinDagskra(this,true);
         skraningarGluggi.setVisible(true);
     }//GEN-LAST:event_jSkraLidActionPerformed
+
+    private void jInnanKlstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInnanKlstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jInnanKlstActionPerformed
 
     
     
